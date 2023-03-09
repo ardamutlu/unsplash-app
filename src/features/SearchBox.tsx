@@ -2,15 +2,13 @@ import React from "react";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import _kebabCase from "lodash/kebabCase";
-import Autocomplete, { Field } from "@/components/Autocomplete";
+import Autocomplete, { Field } from "@/components/Autocomplete/Autocomplete";
 import { fetchNautocomplete, resetNautocomplete } from "@/store/nautocomplete";
 import { RootState } from "@/store/store";
 
 const SearchBox = () => {
   const { push } = useRouter();
-  const nautocomplete: any = useSelector(
-    (state: RootState) => state.nautocomplete
-  );
+  const nautocomplete = useSelector((state: RootState) => state.nautocomplete);
   const dispatch = useDispatch();
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,6 +28,7 @@ const SearchBox = () => {
       displayKey="query"
       onChange={onChange}
       onSelect={onSelect}
+      placeholder="Search high-resolution images"
     />
   );
 };

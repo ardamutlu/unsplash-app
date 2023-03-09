@@ -6,7 +6,10 @@ type Props = {
 } & React.HtmlHTMLAttributes<HTMLDivElement>;
 
 const Content: React.FC<Props> = ({ children, className, ...props }) => (
-  <div className={classNames("px-2 sm:px-6 lg:px-8", className)} {...props}>
+  <div
+    className={classNames("h-full px-2 sm:px-6 lg:px-8", className)}
+    {...props}
+  >
     {children}
   </div>
 );

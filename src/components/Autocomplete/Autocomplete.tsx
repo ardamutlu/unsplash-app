@@ -9,6 +9,7 @@ interface Props<T extends Field> {
   data: T[];
   displayKey: keyof T;
   selected?: Field;
+  placeholder?: string;
   onSelect?: (value: Field) => void;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
@@ -17,8 +18,10 @@ function Autocomplete<T extends Field>({
   data,
   displayKey,
   selected,
+  placeholder,
   onSelect,
   onChange,
+  ...props
 }: Props<T>) {
   const comboboxOptionsRef = useRef<HTMLButtonElement>(null);
 
@@ -29,14 +32,15 @@ function Autocomplete<T extends Field>({
   };
 
   return (
-    <Combobox value={selected} onChange={onSelect}>
-      <div className="relative mt-1">
-        <div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
+    <Combobox value={selected} onChange={onSelect} {...props}>
+      <div className="relative mt-1 w-full">
+        <div className="relative w-full cursor-default rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
           <Combobox.Input
-            className="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
+            className="w-full border-none py-4 pl-3 pr-10 text-lg leading-5 text-gray-900 focus:ring-0"
             displayValue={(item: Field) => item[displayKey] as string}
             onChange={onChange}
             onClick={onClick}
+            placeholder={placeholder}
           />
           <Combobox.Button ref={comboboxOptionsRef} />
         </div>

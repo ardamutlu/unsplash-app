@@ -4,10 +4,16 @@ import {
   createAction,
   createAsyncThunk,
   createSlice,
+  PayloadAction,
   PayloadActionCreator,
 } from "@reduxjs/toolkit";
 
-const INITIAL_STATE = {};
+export type INautocomplete = {
+  query: string;
+  priority: number;
+};
+
+const INITIAL_STATE = {} as PayloadAction<INautocomplete[]>;
 
 export const nautocompleteThunk: any = createAsyncThunk(
   "NAUTOCOMPLETE",
@@ -38,7 +44,7 @@ export const fetchNautocomplete =
   (dispatch: PayloadActionCreator) =>
     debounceFn(dispatch, ...args);
 
-export const resetNautocomplete = createAction("RESET_NAUTOCOMPLETE");
+export const resetNautocomplete = createAction("NAUTOCOMPLETE/reset");
 
 export const slice = createSlice({
   name: "NAUTOCOMPLETE",

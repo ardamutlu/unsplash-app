@@ -10,9 +10,12 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
+      <div className="flex flex-col items-start h-full pt-10">
+        <div className="text-3xl font-medium mb-2">Unsplash</div>
+        <div>The internet’s source for visuals.</div>
+        <div className="mb-2">Powered by creators everywhere.</div>
         <SearchBox />
-      </main>
+      </div>
     </>
   );
 }
